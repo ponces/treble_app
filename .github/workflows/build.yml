@@ -25,21 +25,21 @@ jobs:
       run: |
         bash build.sh release
 
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: TrebleApp
-        path: TrebleApp.apk
+#    - name: Upload build artifact
+#      uses: actions/upload-artifact@v4
+#      with:
+#        name: TrebleApp
+#        path: TrebleApp.apk
 
-    - name: Update APK
-      run: |
-        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config --global user.name "github-actions[bot]"
-        git config --global credential.helper cache
-        git clone https://${{ secrets.TREBLEDROID_TOKEN }}@github.com/TrebleDroid/vendor_hardware_overlay
-        cd vendor_hardware_overlay
-        git checkout pie
-        cp ../TrebleApp.apk TrebleApp/app.apk
-        git add TrebleApp/app.apk
-        git commit -m "Up TrebleApp to TrebleDroid/treble_app@${{ steps.latest_commit.outputs.hash }}"
-        git push origin pie || true
+#    - name: Update APK
+#      run: |
+#        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+#        git config --global user.name "github-actions[bot]"
+#        git config --global credential.helper cache
+#        git clone https://${{ secrets.TREBLEDROID_TOKEN }}@github.com/TrebleDroid/vendor_hardware_overlay
+#        cd vendor_hardware_overlay
+#        git checkout pie
+#        cp ../TrebleApp.apk TrebleApp/app.apk
+#        git add TrebleApp/app.apk
+#        git commit -m "Up TrebleApp to TrebleDroid/treble_app@${{ steps.latest_commit.outputs.hash }}"
+#        git push origin pie || true
